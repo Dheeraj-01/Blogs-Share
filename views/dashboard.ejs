@@ -1,0 +1,38 @@
+<%- include('header.ejs') %>
+
+<section class="text-gray-600 body-font">
+    <div class="container px-5 py-24 mx-auto">
+        <div class="container flex justify-center">
+            <h1 class="text-5xl font-medium title-font mb-4 text-gray-900 tracking-widest">Dashboard</h1>
+        </div>
+      <div class="flex flex-col text-center w-full mb-20">
+        <h1 class="text-2xl font-medium title-font mb-4 text-gray-900 tracking-widest">Welcome <%= body.name%></h1>
+        <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Your All Blog Are Here.</p>
+      </div>
+      <div class="flex flex-wrap -m-4">
+        <% if(body.blogs.length>0){
+          body.blogs.forEach(function(row){
+          %>
+          <div class="p-4 lg:w-1/2">
+            <div class="h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
+              <div class="flex-grow sm:pl-8">
+                <a href="/blog/<%= row._id %>" class="title-font font-medium text-lg text-blue-700 hover:text-blue-900"><%= row.title %></a>
+                <h3 class="text-gray-500 mb-3"><%= row.CratedAt %> <b class="font-black">(<%= row.status %>)</b></h3>
+                <span class="inline-flex">
+                  <a href="/edit/<%= row._id %>" class="text-blue-900 bg-blue-300 p-2 rounded">
+                      <i class="fa fa-pencil-square-o"></i>
+                  </a>
+                  <a href="/delete/<%= row._id %>" onclick="return confirm('Are you sure?')" class="ml-2 text-red-900 bg-red-300 p-2 rounded">
+                      <i class="fa fa-trash-o"></i>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+          <%   })} %>
+      </div>
+    </div>
+  </section>
+
+  
+<%- include('footer.ejs') %>
